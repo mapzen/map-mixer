@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/mapzen/map-mixer#readme",
   "dependencies": {
-    "mapzen.js": "git+https://github.com/mapzen/mapzen.js.git#master",
+    "mapzen.js": "^0.9.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
