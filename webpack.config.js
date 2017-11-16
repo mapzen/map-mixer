@@ -24,7 +24,7 @@ module.exports = {
             ['transform-react-jsx']
           ],
           presets: [
-            ['es2015', { modules: false }]
+            ['env']
           ]
         }
       }]
