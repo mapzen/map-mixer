@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch",
     "build": "webpack --debug --progress",
     "build-production": "webpack -p",
     "start": "http-server"
@@ -27,7 +28,9 @@
   "dependencies": {
     "mapzen.js": "^0.9.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
