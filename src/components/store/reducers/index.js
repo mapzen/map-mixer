@@ -1,8 +1,4 @@
-const defaultState = {
-  baseMap: 'bubble-wrap',
-  colorTheme: 'black',
-  labelDetail: 0
-}
+import defaultState from './defaultState'
 
 const requestedMapDetails = (state = defaultState, action) => {
   switch (action.type) {

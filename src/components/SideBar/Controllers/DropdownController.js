@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { connect } from 'react-redux'
-
-let DropdownController = ({label, options, onChangeAction}) => {
+const DropdownController = ({label, options, onChangeAction}) => {
   let input
   return (
     <div className='mt-2 mb-2'>

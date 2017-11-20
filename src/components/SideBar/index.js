@@ -1,11 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import ControllerContainer from './Controllers/ControllerContainer'
 import CodePanel from './CodePanel'
-
-import { changeBaseMap, changeLabelDetail, changeColorTheme } from '../store/actions'
-
 
 class SideBar extends React.Component {
   render () {
@@ -18,4 +14,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar;
+export default SideBar

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-let SliderController = ({label, min, max, value, onChangeAction}) => {
+const SliderController = ({label, min, max, value, onChangeAction}) => {
   let input
   return (
     <div className='mt-2 mb-2'>

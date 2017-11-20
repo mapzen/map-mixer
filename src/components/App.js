@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import Map from './Map'
 import SideBar from './SideBar'
 
-import './App.css';
+import './App.css'
 
 class App extends Component {
   render () {
     return (
-      <div style={{width: '100%', height: '100%'}}>
+      <div className='app-container'>
         <SideBar />
         <Map />
       </div>

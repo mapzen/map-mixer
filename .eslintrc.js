@@ -1,3 +1,3 @@
 module.exports = {
-     "extends": ["react-app", "standard", "standard-jsx"]
+     "extends": ["standard", "standard-jsx"]
 };

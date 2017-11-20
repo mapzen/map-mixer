@@ -2,10 +2,10 @@
 import React, { Component } from 'react'
 import Mapzen from 'mapzen.js'
 import { connect } from 'react-redux'
+
+import defaultState from '../store/reducers/defaultState'
 import MapData from '../../static/mapzen-maps'
 import './index.css'
-
-let layer, scene
 
 class Map extends Component {
   componentDidMount () {
@@ -14,7 +14,12 @@ class Map extends Component {
     var lat = 40.70531
 
     L.Mapzen.apiKey = this.apiKey = 'valhalla-RfDii2g' // eslint-disable-line no-undef
-    var map = Mapzen.map('map') // eslint-disable-line no-undef
+    const initialConfig = getImportConfig(defaultState)
+    var map = Mapzen.map('map', {
+      tangramOptions: {
+        scene: initialConfig
+      }
+    }) // eslint-disable-line no-undef
 
     map.setView([lat, lon], 13)
 
@@ -22,44 +27,46 @@ class Map extends Component {
       position: 'topright'
     }).addTo(map)
 
-    layer = map.getTangramLayer()
-    scene = layer.scene
+    this.scene = map.getTangramLayer().scene
+  }
+
+  shouldComponentUpdate () {
+    return false
+  }
+
+  // We are using componentWillRecieveProps here checking the props
+  // affecting Tangram configuration is changed (if so, update Tangram config)
+  // This is the way we came up with to change the config of Tangram
+  // insdie of the related component (TangramLayer), but outside of React lifecycle
+  componentWillReceiveProps (nextProps) {
+    const newConfig = getImportConfig(nextProps)
+    this.scene.load(newConfig)
   }
 
   render () {
     return (
-      <div className="map-container">
+      <div className='map-container'>
         <div id='map' />
       </div>
     )
   }
 }
 
-const getImportObject = function (sceneArray) {
-  return {
-    import: sceneArray
+const getImportConfig = props => {
+  const { baseMap, labelDetail, colorTheme } = props
+  const baseMapURL = MapData[baseMap].baseURL
+  const labelURL = `${MapData[baseMap].attributes.label.baseURL}${labelDetail}${MapData[baseMap].attributes.label.suffixURL}`
+  if (baseMap === 'refill') {
+    const colorThemeURL = `${MapData[baseMap].attributes.colors.baseURL}${colorTheme}${MapData[baseMap].attributes.colors.suffixURL}`
+    return {import: [baseMapURL, labelURL, colorThemeURL]}
+  } else {
+    return {import: [baseMapURL, labelURL]}
   }
 }
 
-const loadNewCombination = state => {
-  if (scene) {
-    const baseMapURL = MapData[state.baseMap].baseURL
-    const labelURL = `${MapData[state.baseMap].attributes.label.baseURL}${state.labelDetail}${MapData[state.baseMap].attributes.label.suffixURL}`
-    if (state.baseMap === 'refill') {
-      const colorThemeURL = `${MapData[state.baseMap].attributes.colors.baseURL}${state.colorTheme}${MapData[state.baseMap].attributes.colors.suffixURL}`
-      scene.load(getImportObject([baseMapURL, labelURL, colorThemeURL]))
-    } else {
-      scene.load(getImportObject([baseMapURL, labelURL]))
-    }
-  }
-}
-
-const mapStateToProps = state => {
-  loadNewCombination(state)
-  return {
-    state
-  }
-}
+const mapStateToProps = state => ({
+  ...state
+})
 
 const FilteredMap = connect(
   mapStateToProps
