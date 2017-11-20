@@ -18,7 +18,9 @@ class Map extends Component {
 
     map.setView([lat, lon], 13)
 
-    Mapzen.geocoder().addTo(map) // eslint-disable-line no-undef
+    Mapzen.geocoder({
+      position: 'topright'
+    }).addTo(map)
 
     layer = map.getTangramLayer()
     scene = layer.scene
@@ -26,7 +28,9 @@ class Map extends Component {
 
   render () {
     return (
-      <div id='map' />
+      <div className="map-container">
+        <div id='map' />
+      </div>
     )
   }
 }

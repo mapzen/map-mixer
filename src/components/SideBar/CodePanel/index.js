@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import MapData from '../../static/mapzen-maps'
+import MapData from '../../../static/mapzen-maps'
 
 const codeSnippetPrefix = `
   L.Mapzen.apikey = 'your-mapzen-key'
@@ -32,7 +32,7 @@ const getCurrentCode = (state) => {
 class CodePanel extends React.Component {
   render () {
     return (
-      <div className='col-sm-8'>
+      <div className='col-sm-12'>
         <pre>
           {codeSnippetPrefix}
           {this.props.currentCode}

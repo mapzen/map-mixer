@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-let DropdownController = ({label, options, onChangeAction, dispatch}) => {
+let DropdownController = ({label, options, onChangeAction}) => {
   let input
   return (
     <div className='mt-2 mb-2'>
@@ -12,7 +12,7 @@ let DropdownController = ({label, options, onChangeAction, dispatch}) => {
           input = node
         }}
         onChange={e => {
-          dispatch(onChangeAction(input.value))
+          onChangeAction(input.value)
         }}>
         {options.map(option => (
           <option key={option} value={option}>{option}</option>
@@ -21,7 +21,5 @@ let DropdownController = ({label, options, onChangeAction, dispatch}) => {
     </div>
   )
 }
-
-DropdownController = connect()(DropdownController)
 
 export default DropdownController
