@@ -11,6 +11,7 @@ module.exports = {
     publicPath: 'scripts/',
     filename: 'bundle.js'
   },
+  devtool: 'eval-source-map',
   module: {
     // Apply `noParse` to Tangram to prevent mangling of UMD boilerplate
     noParse: /tangram\/dist\/tangram/,
