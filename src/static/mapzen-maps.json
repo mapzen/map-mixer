@@ -55,5 +55,29 @@
         }
       }
     }
+  },
+  "walkabout": {
+    "baseURL": "https://mapzen.com/carto/walkabout-style/6/walkabout-style.zip",
+    "attributes": {
+      "label": {
+        "baseURL": "https://mapzen.com/carto/walkabout-style/6/themes/label-",
+        "suffixURL": ".zip",
+        "type": "range",
+        "minValue": 0,
+        "maxValue": 10
+      }
+    }
+  },
+  "tron": {
+    "baseURL": "https://mapzen.com/carto/tron-style/5/tron-style.zip",
+    "attributes": {
+      "label": {
+        "baseURL": "https://mapzen.com/carto/tron-style/5/themes/label-",
+        "suffixURL": ".zip",
+        "type": "range",
+        "minValue": 0,
+        "maxValue": 10
+      }
+    }
   }
 }
