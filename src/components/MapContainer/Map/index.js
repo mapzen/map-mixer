@@ -1,11 +1,22 @@
 // main.js
 import React, { Component } from 'react'
 import Mapzen from 'mapzen.js'
-import { connect } from 'react-redux'
 
-import defaultState from '../store/reducers/defaultState'
-import MapData from '../../static/mapzen-maps'
+import defaultState from '../../store/reducers/defaultState'
+import MapData from '../../../static/mapzen-maps'
 import './index.css'
+
+const getImportConfig = (props) => {
+  const { baseMap, labelDetail, colorTheme } = props
+  const baseMapURL = MapData[baseMap].baseURL
+  const labelURL = `${MapData[baseMap].attributes.label.baseURL}${labelDetail}${MapData[baseMap].attributes.label.suffixURL}`
+  if (baseMap === 'refill') {
+    const colorThemeURL = `${MapData[baseMap].attributes.colors.baseURL}${colorTheme}${MapData[baseMap].attributes.colors.suffixURL}`
+    return {import: [baseMapURL, labelURL, colorThemeURL]}
+  } else {
+    return {import: [baseMapURL, labelURL]}
+  }
+}
 
 class Map extends Component {
   componentDidMount () {
@@ -39,37 +50,16 @@ class Map extends Component {
   // This is the way we came up with to change the config of Tangram
   // insdie of the related component (TangramLayer), but outside of React lifecycle
   componentWillReceiveProps (nextProps) {
-    const newConfig = getImportConfig(nextProps)
+    const newConfig = getImportConfig(nextProps.mapProps)
     this.scene.load(newConfig)
+      .then(() => {console.log('bangbang');nextProps.loadingMapDone();})
   }
 
   render () {
     return (
-      <div className='map-container'>
-        <div id='map' />
-      </div>
+      <div id='map' />
     )
   }
 }
 
-const getImportConfig = props => {
-  const { baseMap, labelDetail, colorTheme } = props
-  const baseMapURL = MapData[baseMap].baseURL
-  const labelURL = `${MapData[baseMap].attributes.label.baseURL}${labelDetail}${MapData[baseMap].attributes.label.suffixURL}`
-  if (baseMap === 'refill') {
-    const colorThemeURL = `${MapData[baseMap].attributes.colors.baseURL}${colorTheme}${MapData[baseMap].attributes.colors.suffixURL}`
-    return {import: [baseMapURL, labelURL, colorThemeURL]}
-  } else {
-    return {import: [baseMapURL, labelURL]}
-  }
-}
-
-const mapStateToProps = state => ({
-  ...state
-})
-
-const FilteredMap = connect(
-  mapStateToProps
-)(Map)
-
-export default FilteredMap
+export default Map;

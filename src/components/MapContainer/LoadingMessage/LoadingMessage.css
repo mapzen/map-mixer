@@ -1,0 +1,10 @@
+.loading-message {
+  z-index: 9999;
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 15px);
+  color: #333;
+  background-color: rgba(200,200,200,0.7);
+  border-radius: 4px;
+  padding: 5px 20px;
+}

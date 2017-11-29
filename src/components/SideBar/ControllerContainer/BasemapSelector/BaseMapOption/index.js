@@ -1,7 +1,8 @@
 import React from 'react'
 import './BasemapOption.css'
 
-const BasemapOption = ({ basemap, currentMap, onChangeAction }) => {
+const BasemapOption = (props) => {
+  const { basemap, currentMap, onChangeAction } = props
   let input
   const checked = (basemap === currentMap) ? 'checked' : ''
   return (

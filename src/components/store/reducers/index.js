@@ -4,22 +4,25 @@ const requestedMapDetails = (state = defaultState, action) => {
   switch (action.type) {
     case 'CHANGE_BASE_MAP': {
       return {
-        baseMap: action.val,
-        colorTheme: state.colorTheme,
-        labelDetail: state.labelDetail
+        ...state,
+        loadingMap: true,
+        baseMap: action.val
       }
     }
     case 'CHANGE_LABEL_DETAIL':
       return {
-        baseMap: state.baseMap,
-        colorTheme: state.colorTheme,
+        ...state,
         labelDetail: action.val
       }
     case 'CHANGE_COLOR_THEME':
       return {
-        baseMap: state.baseMap,
+        ...state,
         colorTheme: action.val,
-        labelDetail: state.labelDetail
+      }
+    case 'LOADING_MAP_DONE':
+      return {
+        ...state,
+        loadingMap: false
       }
     default:
       return state

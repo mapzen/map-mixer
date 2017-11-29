@@ -18,3 +18,10 @@ export const changeColorTheme = val => {
     val
   }
 }
+
+export const loadingMapDone = val => {
+  return {
+    type: 'LOADING_MAP_DONE',
+    val
+  }
+}

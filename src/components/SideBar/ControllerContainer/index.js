@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import DropdownController from './DropdownController'
 import SliderController from './SliderController'
-import BasemapSelector from './BasemapSelector/'
+import BasemapSelector from './BasemapSelector'
 
 import MapData from '../../../static/mapzen-maps'
 

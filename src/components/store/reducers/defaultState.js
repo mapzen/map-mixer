@@ -1,7 +1,8 @@
 const defaultState = {
   baseMap: 'bubble-wrap',
+  labelDetail: 0,
   colorTheme: 'black',
-  labelDetail: 0
+  loadingMap: false
 }
 
 export default defaultState

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Map from './Map'
+import MapContainer from './MapContainer'
 import SideBar from './SideBar'
 
 import './App.css'
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className='app-container'>
         <SideBar />
-        <Map />
+        <MapContainer />
       </div>
     )
   }

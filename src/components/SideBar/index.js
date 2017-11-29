@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ControllerContainer from './Controllers/ControllerContainer'
+import ControllerContainer from './ControllerContainer'
 import CodePanel from './CodePanel'
 
 class SideBar extends React.Component {
