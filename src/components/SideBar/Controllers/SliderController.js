@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const SliderController = ({label, min, max, value, onChangeAction}) => {
   let input
   return (
-    <div className='mt-2 mb-2'>
+    <div className='mt-3 mb-2'>
       <label> {label} </label>
       <input
         type='range'

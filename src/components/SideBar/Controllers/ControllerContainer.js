@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import DropdownController from './DropdownController'
 import SliderController from './SliderController'
+import BasemapSelector from './BasemapSelector/'
 
 import MapData from '../../../static/mapzen-maps'
 
@@ -48,9 +49,10 @@ class ControllerPanel extends React.Component {
     const matchingControllers = getController(this.props)
     return (
       <div className='panel col-sm-12'>
-        <DropdownController
+        <BasemapSelector
           label='Base Map'
-          options={getArrayWithObject(MapData)}
+          currentMap={this.props.baseMap}
+          basemapOptions={getArrayWithObject(MapData)}
           onChangeAction={this.props.changeBaseMapValue} />
         {matchingControllers.map((MatchingComponent, i) => MatchingComponent)}
       </div>

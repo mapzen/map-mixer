@@ -1,0 +1,53 @@
+/* overriding mapzen radio button style */
+
+input[type="radio"] {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+input[type="radio"] + *:before {
+  content: none;
+}
+
+/* selector style */
+input[type="radio"].basemap-radio {
+  padding: 0;
+  margin: 0;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+
+input[type="radio"]:active +.basemap-card{opacity: .9;}
+
+input[type="radio"]:checked +.basemap-card{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.basemap-card {
+  /* placeholder background image */
+   background-image: linear-gradient(red, orange);
+}
+
+.basemap-card {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100%;
+    height: 90px;
+    -webkit-transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+    -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+    filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.basemap-card:hover {
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
