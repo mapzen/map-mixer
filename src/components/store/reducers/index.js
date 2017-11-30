@@ -19,7 +19,7 @@ const requestedMapDetails = (state = defaultState, action) => {
       return {
         ...state,
         loadingMap: true,
-        colorTheme: action.val,
+        colorTheme: action.val
       }
     case 'LOADING_MAP_DONE':
       return {

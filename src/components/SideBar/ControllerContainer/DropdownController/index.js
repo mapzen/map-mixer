@@ -16,7 +16,7 @@ const DropdownController = (props) => {
           {options.map(option => (
             <option
               key={option}
-              selected={(currentColor===option)?'selected':''}
+              selected={(currentColor === option) ? 'selected' : ''}
               value={option}>
               {option}
             </option>

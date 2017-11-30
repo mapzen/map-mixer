@@ -1,3 +1,3 @@
 module.exports = {
-     "extends": ["standard", "standard-jsx"]
+    "extends": ["eslint:recommended", "standard", "standard-jsx"]
 };

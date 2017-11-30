@@ -52,7 +52,7 @@ class Map extends Component {
   componentWillReceiveProps (nextProps) {
     const newConfig = getImportConfig(nextProps.mapProps)
     this.scene.load(newConfig)
-      .then(() => {console.log('bangbang');nextProps.loadingMapDone();})
+      .then(() => { nextProps.loadingMapDone() })
   }
 
   render () {
@@ -62,4 +62,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default Map
