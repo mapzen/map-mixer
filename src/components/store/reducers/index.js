@@ -12,11 +12,13 @@ const requestedMapDetails = (state = defaultState, action) => {
     case 'CHANGE_LABEL_DETAIL':
       return {
         ...state,
+        loadingMap: true,
         labelDetail: action.val
       }
     case 'CHANGE_COLOR_THEME':
       return {
         ...state,
+        loadingMap: true,
         colorTheme: action.val,
       }
     case 'LOADING_MAP_DONE':
