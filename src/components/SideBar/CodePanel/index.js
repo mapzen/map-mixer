@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
 import MapData from '../../../static/mapzen-maps'
 
+/* This prevents screen reader from reading the main window
+  when it needs to read modal window */
+
 ReactModal.setAppElement('#root')
 
 const codeSnippetPrefix = `
