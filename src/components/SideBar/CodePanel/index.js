@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import ReactModal from 'react-modal'
 import MapData from '../../../static/mapzen-maps'
+
+ReactModal.setAppElement('#root')
 
 const codeSnippetPrefix = `
   L.Mapzen.apikey = 'your-mapzen-key'
@@ -30,14 +32,44 @@ const getCurrentCode = (state) => {
 }
 
 class CodePanel extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      showModal: false
+    }
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true })
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false })
+  }
+
   render () {
     return (
-      <div className='col-sm-12'>
-        <pre>
-          {codeSnippetPrefix}
-          {this.props.currentCode}
-          {codeSnippetSuffix}
-        </pre>
+      <div className='col-xs-12'>
+        <button
+          className='btn btn-with-arrow'
+          onClick={this.handleOpenModal}>Show Code</button>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel='Minimal Modal Example'
+        >
+          <pre>
+            {codeSnippetPrefix}
+            {this.props.currentCode}
+            {codeSnippetSuffix}
+          </pre>
+          <button
+            className='btn btn-with-arrow'
+            onClick={this.handleCloseModal}>
+            Close
+          </button>
+        </ReactModal>
       </div>
     )
   }
