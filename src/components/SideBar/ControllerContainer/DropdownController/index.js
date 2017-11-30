@@ -1,6 +1,7 @@
 import React from 'react'
 
-const DropdownController = ({label, options, onChangeAction}) => {
+const DropdownController = (props) => {
+  const {label, currentColor, options, onChangeAction} = props
   let input
   return (
     <div className='mt-3 mb-2 row'>
@@ -15,6 +16,7 @@ const DropdownController = ({label, options, onChangeAction}) => {
           {options.map(option => (
             <option
               key={option}
+              selected={(currentColor===option)?'selected':''}
               value={option}>
               {option}
             </option>

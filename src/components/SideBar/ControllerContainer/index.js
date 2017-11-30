@@ -18,7 +18,7 @@ const getArrayWithObject = (obj) => {
 function getController (props) {
   let components = []
   let keyCount = 0
-  const { baseMap, labelDetail, changeLabelDetailValue, changeColorThemeValue } = props
+  const { baseMap, labelDetail, colorTheme, changeLabelDetailValue, changeColorThemeValue } = props
   for (const attr in MapData[baseMap].attributes) {
     if (MapData[baseMap].attributes[attr].type === 'select') {
       components.push(
@@ -26,6 +26,7 @@ function getController (props) {
           label={attr}
           key={keyCount}
           onChangeAction={changeColorThemeValue}
+          currentColor={colorTheme}
           options={getArrayWithObject(MapData[baseMap].attributes[attr].values)}
         />)
     } else if (MapData[baseMap].attributes[attr].type === 'range') {
