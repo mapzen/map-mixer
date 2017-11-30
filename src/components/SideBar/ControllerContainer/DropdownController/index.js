@@ -12,11 +12,11 @@ const DropdownController = (props) => {
         <select
           className='col-xs-12'
           ref={node => { input = node }}
+          defaultValue={currentColor}
           onChange={e => { onChangeAction(input.value) }}>
           {options.map(option => (
             <option
               key={option}
-              selected={(currentColor === option) ? 'selected' : ''}
               value={option}>
               {option}
             </option>
