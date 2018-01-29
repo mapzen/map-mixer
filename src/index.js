@@ -2,14 +2,26 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-
-import App from './components/App.js'
-
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import App from './Containers/App.js'
+import reducer from './Reducers'
 import './index.css'
-import requiredMapDetails from './components/store/reducers'
+import { receiveAllMaps } from './Actions'
+import { createLogger } from 'redux-logger'
 
-let store = createStore(requiredMapDetails)
+const middleware = [ thunk ];
+
+if (process.env.NODE_ENV !== 'production') {
+  middleware.push(createLogger());
+}
+
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
+
+store.dispatch(receiveAllMaps())
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 
 import MapContainer from './MapContainer'
-import SideBar from './SideBar'
-
-import './App.css'
+import SidebarContainer from './SidebarContainer'
 
 class App extends Component {
   render () {
     return (
       <div className='app-container'>
-        <SideBar />
+        <h1> dumb text climb</h1>
         <MapContainer />
+        <SidebarContainer />
       </div>
     )
   }

@@ -1,10 +1,8 @@
 import React from 'react'
 import './BasemapOption.css'
 
-const BasemapOption = (props) => {
-  const { basemap, currentMap, onChangeAction } = props
+const BasemapOption = ({ basemap, basemapID, checked, onChangeAction }) => {
   let input
-  const checked = (basemap === currentMap) ? 'checked' : ''
   return (
     <div className='col-xs-4'>
       <input
@@ -15,7 +13,7 @@ const BasemapOption = (props) => {
         checked={checked}
         ref={node => { input = node }}
         onChange={e => { onChangeAction(input.value) }}
-        value={basemap} />
+        value={basemapID} />
       <label
         htmlFor={basemap}
         className='basemap-card' />

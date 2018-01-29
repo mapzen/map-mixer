@@ -1,34 +1,33 @@
-import defaultState from './defaultState'
+const defaultState = {
+  baseMap: 'bubble-wrap',
+  baseMapId: 0,
+  labelDetail: 0,
+  colorTheme: 'black'
+}
 
-const requestedMapDetails = (state = defaultState, action) => {
+const sidebar = (state = defaultState, action) => {
   switch (action.type) {
     case 'CHANGE_BASE_MAP': {
       return {
         ...state,
-        loadingMap: true,
-        baseMap: action.val
+        baseMapId: action.val
       }
     }
     case 'CHANGE_LABEL_DETAIL':
       return {
         ...state,
-        loadingMap: true,
         labelDetail: action.val
       }
     case 'CHANGE_COLOR_THEME':
       return {
         ...state,
-        loadingMap: true,
         colorTheme: action.val
-      }
-    case 'LOADING_MAP_DONE':
-      return {
-        ...state,
-        loadingMap: false
       }
     default:
       return state
   }
 }
 
-export default requestedMapDetails
+export const getCurrentSidebar = (state) => (state.sidebar.baseMap)? state.sidebar: defaultState
+
+export default sidebar

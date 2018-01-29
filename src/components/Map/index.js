@@ -2,16 +2,14 @@
 import React, { Component } from 'react'
 import Mapzen from 'mapzen.js'
 
-import defaultState from '../../store/reducers/defaultState'
-import MapData from '../../../static/mapzen-maps'
 import './index.css'
 
-const getImportConfig = (props) => {
-  const { baseMap, labelDetail, colorTheme } = props
-  const baseMapURL = MapData[baseMap].baseURL
-  const labelURL = `${MapData[baseMap].attributes.label.baseURL}${labelDetail}${MapData[baseMap].attributes.label.suffixURL}`
-  if (baseMap === 'refill') {
-    const colorThemeURL = `${MapData[baseMap].attributes.colors.baseURL}${colorTheme}${MapData[baseMap].attributes.colors.suffixURL}`
+const getImportConfig = ({ baseMap, label, color }) => {
+  
+  let baseMapURL = baseMap.baseURL
+  let labelURL = `${label.baseURL}${label.value}${label.suffixURL}`
+  if (baseMap.title === 'refill') {
+    let colorThemeURL = `${color.baseURL}${color.value}${color.suffixURL}`
     return {import: [baseMapURL, labelURL, colorThemeURL]}
   } else {
     return {import: [baseMapURL, labelURL]}
@@ -25,7 +23,8 @@ class Map extends Component {
     var lat = 40.70531
 
     L.Mapzen.apiKey = this.apiKey = 'valhalla-RfDii2g' // eslint-disable-line no-undef
-    const initialConfig = getImportConfig(defaultState)
+    
+    let initialConfig = getImportConfig(this.props)
     var map = Mapzen.map('map', {
       tangramOptions: {
         scene: initialConfig
@@ -50,9 +49,11 @@ class Map extends Component {
   // This is the way we came up with to change the config of Tangram
   // insdie of the related component (TangramLayer), but outside of React lifecycle
   componentWillReceiveProps (nextProps) {
-    const newConfig = getImportConfig(nextProps.mapProps)
-    this.scene.load(newConfig)
-      .then(() => { nextProps.loadingMapDone() })
+    if (nextProps.loading) {
+      let newConfig = getImportConfig(nextProps)
+      this.scene.load(newConfig)
+        .then(() => { nextProps.loadingMapDone() })
+    }
   }
 
   render () {

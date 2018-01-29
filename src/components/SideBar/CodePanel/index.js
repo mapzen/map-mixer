@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import MapData from '../../../static/mapzen-maps'
-
 const codeSnippetPrefix = `
   L.Mapzen.apikey = 'your-mapzen-key'
   L.Mapzen.map('map', {
@@ -15,11 +13,11 @@ const codeSnippetSuffix = `
   }
 })`
 
-const getCurrentCode = (state) => {
-  const baseMapURL = MapData[state.baseMap].baseURL
-  const labelURL = `${MapData[state.baseMap].attributes.label.baseURL}${state.labelDetail}${MapData[state.baseMap].attributes.label.suffixURL}`
-  if (state.baseMap === 'refill') {
-    const colorThemeURL = `${MapData[state.baseMap].attributes.colors.baseURL}${state.colorTheme}${MapData[state.baseMap].attributes.colors.suffixURL}`
+const getCurrentCode = ({ currentBaseMap, currentLabel, currentColor }) => {
+  const baseMapURL = currentBaseMap.baseURL
+  const labelURL = `${currentLabel.baseURL}${currentLabel.value}${currentLabel.suffixURL}`
+  if (currentBaseMap.title === 'refill') {
+    const colorThemeURL = `${currentColor.baseURL}${currentColor.value}${currentColor.suffixURL}`
     return `${baseMapURL},
       ${labelURL},
       ${colorThemeURL}`
@@ -29,24 +27,13 @@ const getCurrentCode = (state) => {
   }
 }
 
-class CodePanel extends React.Component {
-  render () {
-    return (
-      <div className='col-sm-12'>
+const CodePanel = (props) => (
+    <div className='col-sm-12'>
         <pre>
           {codeSnippetPrefix}
-          {this.props.currentCode}
+          {getCurrentCode(props)}
           {codeSnippetSuffix}
         </pre>
-      </div>
-    )
-  }
-}
+      </div>)
 
-const mapStateToProps = state => {
-  return {
-    currentCode: getCurrentCode(state)
-  }
-}
-
-export default connect(mapStateToProps)(CodePanel)
+export default CodePanel

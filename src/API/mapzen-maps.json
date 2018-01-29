@@ -1,5 +1,5 @@
-{
-  "bubble-wrap": {
+[{ "title": "bubble-wrap",
+    "id": 0,
     "baseURL": "https://mapzen.com/carto/bubble-wrap-style/8/bubble-wrap-style.zip",
     "attributes": {
         "label": {
@@ -10,9 +10,9 @@
         "maxValue": 10
       }
     }
-
   },
-  "cinnabar": {
+  { "title": "cinnabar",
+    "id":1,
     "baseURL": "https://mapzen.com/carto/cinnabar-style/8/cinnabar-style.zip",
     "attributes": {
       "label": {
@@ -24,7 +24,9 @@
       }
     }
   },
-  "refill": {
+  {
+    "title": "refill",
+    "id": 2,
     "baseURL": "https://mapzen.com/carto/refill-style/9/refill-style.zip",
     "attributes": {
       "label": {
@@ -38,25 +40,12 @@
         "type": "select",
         "baseURL":  "https://mapzen.com/carto/refill-style/9/themes/color-",
         "suffixURL": ".zip",
-        "values": {
-          "black": "black",
-          "gray": "gray",
-          "blue": "blue",
-          "sepia": "sepia",
-          "pink": "pink",
-          "pink-yellow": "pink-yellow",
-          "brown-orange": "brown-orange",
-          "blue-gray": "blue-gray",
-          "high-contrast": "high-contrast",
-          "inverted": "inverted",
-          "purple-green": "purple-green",
-          "gray-gold": "gray-gold",
-          "zinc": "zinc.zip"
+        "options": ["black", "gray", "blue", "sepia", "pink", "pink-yellow", "brown-orange", "blue-gray", "high-contrast", "inverted", "purple-green", "gray-gold", "zinc.zip"]
         }
       }
-    }
-  },
-  "walkabout": {
+    },
+  { "title": "walkabout",
+    "id": 3,
     "baseURL": "https://mapzen.com/carto/walkabout-style/6/walkabout-style.zip",
     "attributes": {
       "label": {
@@ -68,7 +57,9 @@
       }
     }
   },
-  "tron": {
+  {
+    "title": "tron",
+    "id": 4,
     "baseURL": "https://mapzen.com/carto/tron-style/5/tron-style.zip",
     "attributes": {
       "label": {
@@ -80,4 +71,4 @@
       }
     }
   }
-}
+]
